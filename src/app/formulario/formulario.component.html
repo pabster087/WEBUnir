@@ -2,15 +2,15 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-7 py-7">
-      <h3 [style.color]='propertyBinding' >{{interpolationBinding}}</h3>
+      <h3 [style.color]='propertyBinding'>{{interpolationBinding}}</h3>
       <form>
         <div class="form-group col-sm-12 col-md-6 col-lg-7 py-7">
-          <label for="inputName" class="form-label">Nombre</label>
-          <input type="name" class="form-control" id="inputName" placeholder="Nombre">
+          <label for="nombre" class="form-label">{{newNombre.title}}</label>
+          <input type="name" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required="required" [(ngModel)]="newNombre.name">
         </div>
         <div class="form-group col-sm-12 col-md-6 col-lg-7 py-7">
-          <label for="inputApellido" class="form-label">Apellido</label>
-          <input type="lastname" class="form-control" id="inputApellido" placeholder="Apellido">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input type="lastname" class="form-control" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="newNombre.apellido">
         </div>
         <div class="form-group col-sm-12 col-md-6 col-lg-7 py-7">
           <label for="exampleInputEmail1">{{newEmail.title}}</label>
@@ -20,10 +20,11 @@
                  name="exampleInputEmail1"
                  aria-describedby="emailHelp"
                  placeholder="correo@correo.com"
-                 [(ngModel)]="newEmail.email">
+                 [(ngModel)]="newEmail.email"
+                 #mail>
         </div>
         <div class="form-group col-sm-12 col-md-7 col-lg-7 py-7">
-          <label for="exampleInputEmail2">Email</label>
+          <label for="exampleInputEmail2">Comprobar Email</label>
           <input disabled type="email"
                  class="form-control"
                  id="exampleInputEmail2"
@@ -44,9 +45,9 @@
           </select>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary py-2 float-right" (click)="enviar($event)">Enviar</button>
-        <div >
-          <h3 class="col-2" [ngClass]="oculto ? 'hidden' : 'green'">Gracias</h3>
+        <button type="submit" class="btn btn-primary py-2 float-right" (click)="enviar($event)" (click)="enviarDatos(mail.value)">Enviar</button>
+        <div>
+          <h3 class="col-6" [ngClass]="oculto ? 'hidden' : 'green'">Gracias {{newNombre.name}} {{newNombre.apellido}}</h3>
         </div>
       </form>
     </div>
